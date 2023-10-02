@@ -10,6 +10,17 @@ initializeApp({
 const db = getFirestore();
 
 const app = express();
+
+// use cors
+app.use((req, res, next) => {
+	if (process.env.NODE_ENV === "development") {
+		res.header("Access-Control-Allow-Origin", "*");
+	} else {
+		res.header("Access-Control-Allow-Origin", "https://dnd.benda.dev");
+	}
+	next();
+});
+
 app.listen(80);
 
 app.get("/", async (req, res) => {
