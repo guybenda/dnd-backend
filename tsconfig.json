@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"module": "ESNext",
+		"target": "esnext",
+		"moduleResolution": "Bundler",
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"outDir": "build",
+		"allowJs": true
+	},
+	"include": ["src"],
+	"ts-node": {
+		"esm": true
+	},
+	"extensions": [".ts", ".js"]
+}
