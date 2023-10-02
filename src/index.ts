@@ -9,13 +9,15 @@ initializeApp({
 
 const db = getFirestore();
 
-// create express server and listen on port 80
 const app = express();
 app.listen(80);
 
-// handle get request
 app.get("/", async (req, res) => {
 	const games = await db.collection("games").limit(10).get();
 	const game = games.docs.pop();
 	res.send(game?.data());
+});
+
+app.get("/test", async (req, res) => {
+	res.send("test");
 });
