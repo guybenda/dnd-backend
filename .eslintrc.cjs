@@ -7,15 +7,16 @@ module.exports = {
 	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
-		project: ["tsconfig.json", "tsconfig.dev.json"],
+		project: ["./tsconfig.json"],
 		sourceType: "module",
-		tsconfigRootDir: __dirname,
 	},
 	ignorePatterns: [
-		"/lib/**/*", // Ignore built files.
+		"/build/**/*", // Ignore built files.
+		"/node_modules/**/*", // Ignore node_modules.
 	],
 	plugins: ["@typescript-eslint"],
 	rules: {
 		"import/no-unresolved": 0,
+		eqeqeq: 1,
 	},
 };
