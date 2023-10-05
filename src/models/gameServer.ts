@@ -34,7 +34,9 @@ export class GameServer {
 			ClientToServerEvents,
 			InterServerEvents,
 			SocketData
-		>(httpServer, {});
+		>(httpServer, {
+			cors: { origin: process.env.DEV ? "*" : "https://dnd.benda.dev" },
+		});
 
 		this.io.use((socket, next) => {
 			const auth = socket.handshake.auth as UserAuth;
@@ -49,7 +51,7 @@ export class GameServer {
 			next();
 		});
 
-		this.io.on("connection", this.handleConnection);
+		this.io.on("connection", this.handleConnection.bind(this));
 	}
 
 	close() {

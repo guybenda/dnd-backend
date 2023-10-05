@@ -13,10 +13,4 @@ const httpServer = app.listen(+(process.env.PORT || 80));
 
 const wsServer = new GameServer(httpServer);
 
-process.on("SIGINT", () => {
-	console.log("SIGINT received, closing");
-	wsServer.close();
-	httpServer.close();
-});
-
 console.log(`DND server running on port ${process.env.PORT || 80}`);

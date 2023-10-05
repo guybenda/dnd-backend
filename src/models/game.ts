@@ -28,14 +28,13 @@ export class Game implements GameType {
 	}
 
 	static async getById(id: string): Promise<Game | null> {
-		const res = await Game.col().where("id", "==", id).get();
+		const res = await Game.col().doc(id).get();
 
-		if (res.empty) {
+		if (!res.exists) {
 			return null;
 		}
 
-		const doc = res.docs.pop();
-		const game = doc?.data() as GameType;
+		const game = res.data() as GameType;
 		return new Game(game);
 	}
 
