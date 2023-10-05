@@ -1,6 +1,6 @@
 {
 	"name": "guybenda-dnd-backend",
-	"type": "module",
+	"type": "commonjs",
 	"version": "1.0.0",
 	"dependencies": {
 		"dnd-common": "guybenda/dnd-common",
@@ -20,9 +20,8 @@
 		"tsconfig-paths": "^4.2.0"
 	},
 	"scripts": {
-		"dev": "node --loader ts-node/esm src/index.ts",
-		"build": "tsc",
-		"start": "tsc&&node build/index.js"
+		"build": "esbuild src/index.ts --bundle --platform=node --outfile=build/index.js",
+		"start": "npm run build&&node build/index.js"
 	},
 	"author": "guybenda",
 	"license": "LGPL-3.0-only"
