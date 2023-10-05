@@ -34,7 +34,7 @@ jobs:
           command: c
           cwd: "./"
           files: |
-            ./build/index.js
+            ./build
             ./captain-definition
             ./dockerfile
           outPath: deploy.tar
