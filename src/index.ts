@@ -18,3 +18,5 @@ process.on("SIGINT", () => {
 	wsServer.close();
 	httpServer.close();
 });
+
+console.log(`DND server running on port ${process.env.PORT || 80}`);

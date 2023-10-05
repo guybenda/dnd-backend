@@ -1,18 +1,18 @@
 {
 	"compilerOptions": {
-		"lib": ["ESNext"],
-		"module": "ESNext",
-		"target": "esnext",
-		"moduleResolution": "Bundler",
-		"strict": true,
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true,
-		"outDir": "build",
-		"allowJs": true
+		"target": "ESNext",
+		"module": "CommonJS",
+		"outDir": "dist/",
+		"sourceMap": true,
+		"esModuleInterop": true
 	},
 	"include": ["src"],
 	"ts-node": {
-		"esm": true
+		"esm": true,
+		"require": ["tsconfig-paths/register"],
+		// "experimentalSpecifierResolution": "node",
+		"transpileOnly": true
 	},
-	"extensions": [".ts", ".js"]
+	"extensions": [".ts", ".js"],
+	"exclude": ["node_modules/**/*"]
 }

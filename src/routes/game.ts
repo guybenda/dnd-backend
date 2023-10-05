@@ -4,7 +4,10 @@ import { Game } from "../models/game";
 export const gamesRouter = Router();
 
 gamesRouter.get("/", async (req, res) => {
+	console.log(1);
 	const games = await Game.getAll();
+	console.log(2);
+
 	res.json(games);
 });
 

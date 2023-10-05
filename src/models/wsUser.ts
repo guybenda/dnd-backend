@@ -1,7 +1,11 @@
-import { WebSocket } from "ws";
+import { Socket } from "socket.io";
 
-export interface WSUser {
-	ws: WebSocket;
+export class IOUser {
+	socket: Socket;
 	id: string;
-	isAlive: boolean;
+
+	constructor(id: string, socket: Socket) {
+		this.id = id;
+		this.socket = socket;
+	}
 }
