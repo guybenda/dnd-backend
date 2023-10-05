@@ -36,6 +36,7 @@ jobs:
           files: |
             ./build/index.js
             ./captain-definition
+            ./dockerfile
           outPath: deploy.tar
 
       - name: Deploy App to CapRover
