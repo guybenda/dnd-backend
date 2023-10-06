@@ -21,7 +21,7 @@
 		"tsconfig-paths": "^4.2.0"
 	},
 	"scripts": {
-		"build": "esbuild src/index.ts --sourcemap --bundle --platform=node --outfile=build/index.js",
+		"build": "esbuild src/index.ts --sourcemap --bundle --minify --keep-names --legal-comments=none --platform=node --outfile=build/index.js",
 		"start": "npm run build&&node build/index.js"
 	},
 	"author": "guybenda",

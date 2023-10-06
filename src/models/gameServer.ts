@@ -36,6 +36,7 @@ export class GameServer {
 			SocketData
 		>(httpServer, {
 			cors: { origin: process.env.DEV ? "*" : "https://dnd.benda.dev" },
+			transports: ["websocket"],
 		});
 
 		this.io.use((socket, next) => {
@@ -60,8 +61,10 @@ export class GameServer {
 
 	private async handleConnection(socket: DndSocket) {
 		const auth = socket.handshake.auth as UserAuth;
+		const ip =
+			socket.handshake.headers["X-Real-IP"] || socket.handshake.address;
 		console.log(
-			`new connection from ${socket.handshake.address}, user ${auth.userId}, game ${auth.gameId}`
+			`new connection from ${ip}, user ${auth.userId}, game ${auth.gameId}`
 		);
 
 		const room = await this.getOrStartGameRoom(auth.gameId);
@@ -113,6 +116,15 @@ export class GameServer {
 		function toAll() {
 			return socket.to(socket.handshake.auth.gameId);
 		}
+
+		socket.use(([event, ...args], next) => {
+			console.log(
+				`received '${event}' from ${socket.handshake.auth.userId} with args`,
+				args
+			);
+
+			next();
+		});
 
 		socket.on("roll", (name, id, roll, broadcast) => {
 			const diceExp = new DiceExpression(roll);
